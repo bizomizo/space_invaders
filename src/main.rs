@@ -33,7 +33,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Render loop in separate thread
     let (render_tx, render_rx) = mpsc::channel();
-
+    
 
 
     //Game Loop
