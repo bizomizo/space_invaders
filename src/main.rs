@@ -1,5 +1,6 @@
 use std::error::Error;
 use std::time::Duration;
+use std::sync::mpsc;
 use crate::event::{
   Event,
   KeyCode
@@ -29,6 +30,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     terminal::enable_raw_mode()?;
     stdout.execute(EnterAlternateScreen)?;
     stdout.execute(Hide)?;
+
+    // Render loop in separate thread
+    let (render_tx, render_rx) = mpsc::channel();
+
+
 
     //Game Loop
     'gameloop: loop {
